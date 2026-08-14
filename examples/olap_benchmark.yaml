@@ -1,0 +1,10 @@
+name: "olap_benchmark"
+description: "OLAP database performance benchmark"
+database_dsn: "postgresql://postgres:postgres@localhost:5432/testdb"
+workload_type: "olap"
+duration_minutes: 15
+warmup_minutes: 5
+concurrent_users: 5
+query_mix:
+  select: 1.0
+target_database: "postgresql"

@@ -1,0 +1,12 @@
+name: "oltp_benchmark"
+description: "OLTP database performance benchmark"
+database_dsn: "postgresql://postgres:postgres@localhost:5432/testdb"
+workload_type: "oltp"
+duration_minutes: 10
+warmup_minutes: 5
+concurrent_users: 20
+query_mix:
+  select: 0.6
+  insert: 0.2
+  update: 0.2
+target_database: "postgresql"
