@@ -25,21 +25,24 @@ pip install -e .
 
 1. Start PostgreSQL database
 2. Create test database:
-`ash
-createdb testdb
-`
+   `ash
+   createdb testdb
+   `
 3. Initialize schema:
-`ash
-psql -d testdb -f examples/database_schema.sql
-`
+   `ash
+   psql -d testdb -f examples/database_schema.sql
+   `
 
 ### Run a Benchmark
 
 `ash
+
 # Generate configuration
+
 dbperf generate-config --workload-type oltp_mixed --output config/
 
 # Run benchmark
+
 dbperf run --config config/oltp_mixed_config.yaml --output reports/
 `
 
@@ -53,24 +56,24 @@ dbperf test-connection --dsn "postgresql://postgres:postgres@localhost:5432/test
 
 `
 dbperf/
-©À©¤©¤ adapters/          # Database adapters
-©¦   ©À©¤©¤ base.py       # Abstract base class
-©¦   ©¸©¤©¤ postgresql.py # PostgreSQL implementation
-©À©¤©¤ workloads/         # Workload implementations
-©¦   ©À©¤©¤ config.py     # Workload configuration
-©¦   ©À©¤©¤ impl.py       # OLTP/OLAP implementations
-©¦   ©¸©¤©¤ factory.py    # Workload factory and generators
-©À©¤©¤ metrics/          # Metrics collection
-©¦   ©À©¤©¤ system.py     # System metrics
-©¦   ©À©¤©¤ database.py   # Database metrics
-©¦   ©À©¤©¤ workload.py   # Workload metrics
-©¦   ©¸©¤©¤ manager.py    # Metrics coordination
-©À©¤©¤ benchmarks/       # Benchmark execution
-©¦   ©¸©¤©¤ runner.py     # Benchmark runner
-©À©¤©¤ reports/          # Report generation
-©¦   ©¸©¤©¤ generator.py  # Report generator
-©À©¤©¤ models.py         # Data models
-©¸©¤©¤ cli.py           # Command-line interface
+Â©Ã€Â©Â¤Â©Â¤ adapters/          # Database adapters
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ base.py       # Abstract base class
+Â©Â¦   Â©Â¸Â©Â¤Â©Â¤ postgresql.py # PostgreSQL implementation
+Â©Ã€Â©Â¤Â©Â¤ workloads/         # Workload implementations
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ config.py     # Workload configuration
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ impl.py       # OLTP/OLAP implementations
+Â©Â¦   Â©Â¸Â©Â¤Â©Â¤ factory.py    # Workload factory and generators
+Â©Ã€Â©Â¤Â©Â¤ metrics/          # Metrics collection
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ system.py     # System metrics
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ database.py   # Database metrics
+Â©Â¦   Â©Ã€Â©Â¤Â©Â¤ workload.py   # Workload metrics
+Â©Â¦   Â©Â¸Â©Â¤Â©Â¤ manager.py    # Metrics coordination
+Â©Ã€Â©Â¤Â©Â¤ benchmarks/       # Benchmark execution
+Â©Â¦   Â©Â¸Â©Â¤Â©Â¤ runner.py     # Benchmark runner
+Â©Ã€Â©Â¤Â©Â¤ reports/          # Report generation
+Â©Â¦   Â©Â¸Â©Â¤Â©Â¤ generator.py  # Report generator
+Â©Ã€Â©Â¤Â©Â¤ models.py         # Data models
+Â©Â¸Â©Â¤Â©Â¤ cli.py           # Command-line interface
 `
 
 ## Configuration
@@ -95,22 +98,26 @@ target_database: "postgresql"
 ### Workload Types
 
 #### OLTP Workloads
+
 - oltp_read_heavy: Read-heavy transactional workload
 - oltp_mixed: Balanced read/write operations
-- 	pc_c_like: TPC-C like e-commerce workload
+- pc_c_like: TPC-C like e-commerce workload
 
 #### OLAP Workloads
+
 - olap_analytical: Complex analytical queries
 
 ## Metrics
 
 ### System Metrics
+
 - CPU usage and load average
 - Memory usage
 - Disk I/O statistics
 - Network I/O statistics
 
 ### Database Metrics
+
 - Connection count
 - Transaction statistics
 - Cache hit ratio
@@ -118,6 +125,7 @@ target_database: "postgresql"
 - Lock contention
 
 ### Workload Metrics
+
 - TPS (transactions per second)
 - QPS (queries per second)
 - Latency percentiles (p50, p95, p99)
@@ -154,15 +162,19 @@ from dbperf.benchmarks import BenchmarkRunner, load_benchmark_config
 from dbperf.workloads.factory import WorkloadGenerator
 
 # Load configuration
+
 config = load_benchmark_config('config/oltp_benchmark.yaml')
 
 # Create benchmark runner
+
 runner = BenchmarkRunner(config)
 
 # Run benchmark
+
 result = runner.execute()
 
 # Generate report
+
 report_file = runner.generate_report('reports/')
 `
 
